@@ -1,0 +1,11 @@
+package Projects;
+
+public class PracticeProject1 {
+
+	public static void main(String[] args) {
+		int a=7;
+		float f= a;
+System.out.println(f);
+	}
+
+}
