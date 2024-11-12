@@ -1,0 +1,98 @@
+ public class EnvironmentValidator {
+
+    public static void main(String[] args) {
+        String env = System.getProperty("env");
+
+        if (!isValidKey("env") || env == null || !isValidValue(env)) {
+            handleInvalidEnvironment(env);
+            return;
+        }
+
+        switch (env.toLowerCase()) {
+            case "development":
+                callDevelopmentMethod();
+                break;
+            case "staging":
+                callStagingMethod();
+                break;
+            case "production":
+                callProductionMethod();
+                break;
+            default:
+                handleInvalidEnvironment(env);
+        }
+    }
+
+    private static boolean isValidKey(String key) {
+        // Validate key against allowed characters (alphanumeric and underscores)
+        return key.matches("[a-zA-Z0-9_]+");
+    }
+
+    private static boolean isValidValue(String value) {
+        // Validate value against allowed characters (alphanumeric and underscores)
+        return value.matches("[a-zA-Z0-9_]+");
+    }
+
+    private static void callDevelopmentMethod() {
+        System.out.println("Development environment method called.");
+        // Implementation for development
+    }
+
+    private static void callStagingMethod() {
+        System.out.println("Staging environment method called.");
+        // Implementation for staging
+    }
+
+    private static void callProductionMethod() {
+        System.out.println("Production environment method called.");
+        // Implementation for production
+    }
+
+    private static void handleInvalidEnvironment(String env) {
+        System.err.println("Invalid environment key or value: " + env);
+        System.err.println("Please use one of the following environments with valid alphanumeric characters: development, staging, production.");
+        // Optional: exit the program
+        System.exit(1);
+    }
+}
+java -Denv=production -jar yourapp
+public class EnvironmentValidator {
+
+    public static void main(String[] args) {
+        String env = System.getProperty("env");
+
+        if (env == null) {
+            System.err.println("No environment key provided. Please set the -Denv parameter.");
+            return;
+        }
+
+        switch (env) {
+            case "development":
+                callDevelopmentMethod();
+                break;
+            case "staging":
+                callStagingMethod();
+                break;
+            case "production":
+                callProductionMethod();
+                break;
+            default:
+                System.err.println("Unknown environment: " + env);
+        }
+    }
+
+    private static void callDevelopmentMethod() {
+        System.out.println("Development environment method called.");
+        // Implementation for development
+    }
+
+    private static void callStagingMethod() {
+        System.out.println("Staging environment method called.");
+        // Implementation for staging
+    }
+
+    private static void callProductionMethod() {
+        System.out.println("Production environment method called.");
+        // Implementation for production
+    }
+}
